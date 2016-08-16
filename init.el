@@ -20,6 +20,7 @@
   (custom-set-variables
     '(initial-frame-alist (quote ((fullscreen . maximized)))))
   (set-frame-parameter nil 'fullscreen 'fullboth)
+  (tool-bar-mode -1)
 )
 
 (add-hook 'window-setup-hook 'my-fullscreen-hook)
