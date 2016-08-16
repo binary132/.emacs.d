@@ -88,6 +88,76 @@
   ; (flycheck-add-next-checker 'javascript 'gjslint 'javascript-flow)
 )
 
+(defun my-elixir-mode-hook ()
+  "My Elixir hook."
+  (smartparens-mode)
+  (sp-with-modes '(elixir-mode)
+    (sp-local-pair "fn" "end"
+           :when '(("SPC" "RET"))
+           :actions '(insert navigate))
+    (sp-local-pair "do" "end"
+           :when '(("SPC" "RET"))
+           :post-handlers '(sp-ruby-def-post-handler)
+           :actions '(insert navigate))
+  )
+)
+
+(add-hook 'elixir-mode 'my-elixir-mode-hook)
+
+(defun my-rust-mode-hook ()
+  "My Rust-mode hook."
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  (setq racer-rust-src-path (getenv "RUST_SRC_PATH"))
+  (setq racer-cmd (concat (getenv "HOME") "/.cargo/bin/racer"))
+  (racer-mode)
+  (eldoc-mode)
+  (company-mode)
+)
+
+(add-hook 'rust-mode-hook 'my-rust-mode-hook)
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'irony-mode-hook 'irony-eldoc)
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+
+(defun my-cxx-mode ()
+  "My C / C++ config hook."
+  (cmake-ide-setup)
+  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
+  (add-to-list 'company-backends '(company-irony-c-headers
+				   company-irony))
+  (c-set-style "K&R")
+  ;; linum-relative-mode
+  (linum-relative-mode)
+  (setq linum-relative-current-symbol "")
+  (irony-mode)
+  ;; autocomplete
+  (company-mode)
+)
+
+(defun my-flycheck-rtags-setup ()
+  "Set up Flycheck to use RTags overlays."
+  (flycheck-select-checker 'rtags)
+  ; RTags creates more accurate overlays.
+  (setq-local flycheck-highlighting-mode nil)
+  (setq-local flycheck-check-syntax-automatically nil)
+)
+
+;; c-mode-common-hook is also called by c++-mode
+;(add-hook 'my-cxx-mode #'my-flycheck-rtags-setup)
+
+(add-hook 'c++-mode-hook 'my-cxx-mode)
+(add-hook 'c-mode-hook 'my-cxx-mode)
+
 ;; Global Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
