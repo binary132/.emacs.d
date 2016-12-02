@@ -12,7 +12,7 @@
 
 (package-initialize)
 
-(load-theme 'solarized-light t)
+(load-theme 'sanityinc-tomorrow-day t)
 
 ;; Start in fullscreen
 (defun my-fullscreen-hook ()
