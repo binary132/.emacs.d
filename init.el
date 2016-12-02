@@ -35,6 +35,13 @@
 (setq linum-relative-current-symbol "")
 (ruler-mode 1)
 
+;; Set up fonts.
+(set-face-attribute 'default nil
+		    :foundry "apple"
+		    :family  "Go Mono"
+		    :height  130
+		    :weight  'light)
+
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 5))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
