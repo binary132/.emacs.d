@@ -76,7 +76,10 @@
   ;; Compile and test
   (if (not (string-match "go" compile-command))
     (set (make-local-variable 'compile-command)
-         "go generate ./... && go test --coverprofile=cover.out ./... && go build ./..."))
+         (concat "go generate ./... && "
+		 "go test --coverprofile=cover.out . && "
+		 "go build ./...")))
+  (local-set-key (kbd "C-x c") 'compile)
   ;; Ruler mode
   (ruler-mode 1)
   ;; Undo tree
