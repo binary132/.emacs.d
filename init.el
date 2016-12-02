@@ -25,6 +25,11 @@
 
 (add-hook 'window-setup-hook 'my-fullscreen-hook)
 
+;; Use whitespace mode to highlight lines extending beyond 72 columns.
+(setq whitespace-line-column 72)
+(setq whitespace-style '(face empty lines-tail trailing))
+(global-whitespace-mode t)
+
 ;; Use relative line numbers
 (linum-relative-mode)
 (setq linum-relative-current-symbol "")
