@@ -50,6 +50,8 @@
 ;; Undo tree
 (undo-tree-mode)
 
+(setq-default indent-tabs-mode nil)
+
 ;; Go setup
 (defun my-go-mode-hook ()
   "Add this stuff to go-mode."
@@ -57,6 +59,8 @@
   (go-eldoc-setup)
   ;; Use goimports instead of gofmt
   (setq gofmt-command "goimports")
+  ;; Use smart tabs
+  (setq indent-tabs-mode t)
   ;; gofmt-before-save
   (add-hook 'before-save-hook 'gofmt-before-save)
   ;; Go Guru identifier highlighting
@@ -97,11 +101,38 @@
 
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-hook)
 
-(defun my-javascript-hook ()
-  "My Javascript config hook."
+;; Javascript stuff
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+(defun my-vue-mode-hook ()
+  "My vue-mode config hook."
+  (linum-relative-mode)
+  (setq linum-relative-current-symbol "")
+
+  (ruler-mode 1)
+  (undo-tree-mode)
+)
+
+(defun my-js2-hook ()
+  "My js2-mode config hook."
+  (setq js-indent-level 2)
+
+  (setq company-backends '(company-tern))
+  (company-mode)
+
+  (linum-relative-mode)
+  (setq linum-relative-current-symbol "")
+
+  (ruler-mode 1)
+  (undo-tree-mode)
+
+  (add-hook 'after-save-hook 'eslint-fix nil t)
   ;; TODO: FIXME!
   ; (flycheck-add-next-checker 'javascript 'gjslint 'javascript-flow)
 )
+
+(add-hook 'vue-mode-hook 'my-vue-mode-hook)
+(add-hook 'js2-mode-hook 'my-js2-hook)
 
 (defun my-elixir-mode-hook ()
   "My Elixir hook."
@@ -122,6 +153,7 @@
 (defun my-rust-mode-hook ()
   "My Rust-mode hook."
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  (setq indent-tabs-mode t)
   (setq racer-rust-src-path (getenv "RUST_SRC_PATH"))
   (setq racer-cmd (concat (getenv "HOME") "/.cargo/bin/racer"))
   (racer-mode)
@@ -147,6 +179,7 @@
 (defun my-cxx-mode ()
   "My C / C++ config hook."
   (cmake-ide-setup)
+  (setq indent-tabs-mode t)
   (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
   (add-to-list 'company-backends '(company-irony-c-headers
 				   company-irony))
@@ -188,12 +221,16 @@
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(js2-bounce-indent-p t)
+ '(js2-concat-multiline-strings (quote eol))
+ '(js2-strict-missing-semi-warning nil)
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree solarized-theme rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack))))
+    (eslint-fix company-tern color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree solarized-theme rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(js2-error ((t (:underline "#c82829"))))
+ '(js2-warning ((t (:underline (:color "gold" :style wave))))))
