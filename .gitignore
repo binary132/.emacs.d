@@ -2,6 +2,7 @@ elpa/
 auto-save-list/
 irony/
 tmp/
+smex-items
 
 # Emacs tempfiles
 *~
