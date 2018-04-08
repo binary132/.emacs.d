@@ -21,7 +21,7 @@
  '(js2-strict-missing-semi-warning nil)
  '(package-selected-packages
    (quote
-    (flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode pdf-tools latex-preview-pane company-math julia-shell ess nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree solarized-theme rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack))))
+    (0xc ess minimap gitignore-mode smex ido-select-window ido-grid-mode foggy-night-theme darktooth-theme badger-theme alect-themes twilight-bright-theme tango-plus-theme soft-morning-theme punpun-theme planet-theme plan9-theme pastelmac-theme paper-theme leuven-theme eziam-theme lenlen-theme iodine-theme greymatters-theme eink-theme pomidor treemacs smartparens racket-mode borland-blue-theme protobuf-mode flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode latex-preview-pane company-math julia-shell nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree solarized-theme rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack))))
 
 
 ;; MELPA
@@ -31,15 +31,40 @@
 
 (package-initialize)
 
-; (load-theme 'solarized-dark t)
-; (load-theme 'solarized-light t)
-; (load-theme 'zenburn t)
-; (load-theme 'sanityinc-tomorrow-day t)
-; (load-theme 'sanityinc-tomorrow-night t)
+;;; Light Themes
+;; Very Bright
+; (load-theme 'sanityinc-tomorrow-day t) ; I likey
+; (load-theme 'solarized-light t)        ; Classic
+; (load-theme 'pastelmac t)              ; Meh
+; (load-theme 'leuven t)                 ; Pretty cool, quietly colorful
+; (load-theme 'paper t)                  ; Pretty cool, rather quiet
+; (load-theme 'iodine t)                 ; Not a fan
+; (load-theme 'tango-plus t)             ; Not bad
+; (load-theme 'soft-morning t)           ; Schizophrenic
+(load-theme 'eink t)                   ; Too quiet
+; (load-theme 'twilight-bright t)
+;; Muted
+
+;;; Colorful Themes
+;; Exciting
+; (load-theme 'borland-blue t)
+; (load-theme 'plan9 t)
+;; Conservative
+
+;;; Dark Themes
+;; Very Bold
 ; (load-theme 'sanityinc-tomorrow-bright t)
-; broken??
-(require 'birds-of-paradise-plus-theme)
-(load-theme birds-of-paradise-plus t)
+; (load-theme 'sanityinc-tomorrow-night t)
+; (load-theme 'birds-of-paradise-plus t)    ; Very contemplative
+; (load-theme 'zenburn t)
+;; (defvar zenburn-override-colors-alist ; Darker Zenburn background
+;;   '(("zenburn-bg" . "#202020")))
+;; (load-theme 'zenburn t)
+; (load-theme 'darktooth t) ; Nice dark variant on B's of P Dark
+; (load-theme 'solarized-dark t)
+; (load-theme 'planet t) ; Nice clean / industrial feel
+; (load-theme 'foggy-night t) ; Great low-contrast theme
+;; Depressing
 
 ;; Start in fullscreen
 (defun my-fullscreen-hook ()
@@ -66,7 +91,7 @@
 (set-face-attribute 'default nil
 		    :foundry "apple"
 		    :family  "Go Mono"
-		    :height  140
+		    :height  145
 		    :weight  'light)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
@@ -74,11 +99,19 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
-(pdf-tools-install)
-
-;; Undo tree
+;; Undo tree always
 (undo-tree-mode)
 
+;; Smex setup
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                  ; when Smex is auto-initialized on its first run.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; Don't use "smart tabs" (?)
 (setq-default indent-tabs-mode nil)
 
 ;; Turn on smart-mode-line https://github.com/Malabarba/smart-mode-line
@@ -93,8 +126,10 @@
 ;;       '(("^~/org/" ":O:")
 ;;         ("^~/\\.emacs\\.d/" ":ED:")))
 
-;; Broken
-;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+;; Use Emacs ls emulation since native ls does not support --dired
+(setq ls-lisp-use-insert-directory-program nil)
+(require 'ls-lisp)
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; Go setup
 (defun my-go-mode-hook ()
@@ -114,8 +149,8 @@
   (local-set-key (kbd "<s-mouse-1>") 'godef-jump)
   (local-set-key (kbd "C-x /") 'pop-tag-mark)
   ;; Use company-go
-  (setq company-backends '(company-go))
   (company-mode)
+  (setq company-backends '(company-go))
   ;; linum-relative-mode
   (linum-relative-mode)
   (setq linum-relative-current-symbol "")
@@ -132,6 +167,8 @@
   (ruler-mode 1)
   ;; Undo tree
   (undo-tree-mode)
+  ;; Minimap
+  ; (minimap-mode)
 )
 
 ;; Bind my Go setup to go-mode-hook
@@ -145,17 +182,17 @@
 
 (add-hook 'asm-mode-hook 'my-asm-mode-hook)
 
-;; Julia setup
-(defun my-julia-mode-hook ()
-  "My julia-mode hook."
-  (rainbow-delimiters-mode)
-  (linum-relative-mode)
-  (setq linum-relative-current-symbol "")
-  (ruler-mode 1)
-)
+;; ;; Julia setup
+;; (defun my-julia-mode-hook ()
+;;   "My julia-mode hook."
+;;   (rainbow-delimiters-mode)
+;;   (linum-relative-mode)
+;;   (setq linum-relative-current-symbol "")
+;;   (ruler-mode 1)
+;; )
 
-(add-hook 'julia-mode-hook 'my-julia-mode-hook)
-(add-hook 'ess-mode-hook 'my-julia-mode-hook)
+;; (add-hook 'julia-mode-hook 'my-julia-mode-hook)
+;; (add-hook 'ess-mode-hook 'my-julia-mode-hook)
 
 ;; Bind rainbow-delimiters to elisp mode
 (defun my-elisp-hook ()
@@ -167,6 +204,11 @@
 )
 
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-hook)
+
+;; Dart stuff
+(setq dart-enable-analysis-server t)
+(setq dart-format-on-save t)
+(add-hook 'dart-mode-hook 'flycheck-mode)
 
 ;; Javascript stuff
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -374,6 +416,7 @@
 (defun my-org-mode-hook ()
   "My custom Org-mode hook."
   ; (org-bullets-mode 1)
+  (undo-tree-mode)
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
   (focus-mode)
@@ -403,12 +446,30 @@
   (local-set-key (kbd "C-x c") 'compile)
 
   (setq flycheck-pony-executable "/usr/local/bin/ponyc")
-  
+
   ;; Ruler mode
   (ruler-mode 1)
 )
 
 (add-hook 'ponylang-mode-hook 'my-ponylang-mode-hook)
+
+(require 'protobuf-mode)
+
+(defun my-protobuf-mode-hook ()
+  "My custom 'protobuf-mode' hook."
+  (defconst my-pb-style
+    '((c-basic-ffset . 4)
+      (indent-tabs-mode . nil)))
+
+  (c-add-style "my-style" my-pb-style t)
+)
+
+(add-hook 'protobuf-mode-hook 'my-protobuf-mode-hook)
+
+;; Scheme / Racket stuff
+(require 'smartparens-config)
+(setq tab-always-indent 'complete)
+(add-hook 'scheme-mode-hook 'geiser-mode)
 
 (provide 'init)
 ;;; init.el ends here
@@ -418,5 +479,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(js2-error ((t (:underline "#c82829"))) t)
- '(js2-warning ((t (:underline (:color "gold" :style wave)))) t))
+ '(js2-error ((t (:underline "#c82829"))))
+ '(js2-warning ((t (:underline (:color "gold" :style wave))))))
