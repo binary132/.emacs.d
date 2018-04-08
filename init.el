@@ -15,13 +15,20 @@
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(flyspell-delay 0.5)
+ '(haskell-mode-hook
+   (quote
+    (haskell-decl-scan-mode haskell-indentation-mode highlight-uses-mode imenu-add-menubar-index interactive-haskell-mode turn-on-haskell-unicode-input-method)))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-stylish-on-save t)
+ '(haskell-tags-on-save t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(js2-bounce-indent-p t)
- '(js2-concat-multiline-strings (quote eol))
- '(js2-strict-missing-semi-warning nil)
+ '(magit-commit-arguments (quote ("--gpg-sign=BAA2F70290B90EB87F923C")))
  '(package-selected-packages
    (quote
-    (0xc ess minimap gitignore-mode smex ido-select-window ido-grid-mode foggy-night-theme darktooth-theme badger-theme alect-themes twilight-bright-theme tango-plus-theme soft-morning-theme punpun-theme planet-theme plan9-theme pastelmac-theme paper-theme leuven-theme eziam-theme lenlen-theme iodine-theme greymatters-theme eink-theme pomidor treemacs smartparens racket-mode borland-blue-theme protobuf-mode flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode latex-preview-pane company-math julia-shell nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree solarized-theme rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack))))
+    (haskell-mode clang-format projectile helm-rtags company-rtags json-navigator smex helm-idris pinentry markdown-toc markdown-mode+ flymd pass color-theme-sanityinc-solarized yasnippet irony-eldoc foggy-night-theme darktooth-theme badger-theme alect-themes twilight-bright-theme tango-plus-theme soft-morning-theme punpun-theme planet-theme plan9-theme pastelmac-theme paper-theme leuven-theme eziam-theme lenlen-theme iodine-theme greymatters-theme eink-theme pomidor treemacs smartparens racket-mode borland-blue-theme protobuf-mode flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode pdf-tools latex-preview-pane company-math julia-shell ess nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack)))
+ '(safe-local-variable-values (quote ((clang-format-on-save . t)))))
 
 
 ;; MELPA
@@ -33,21 +40,22 @@
 
 ;;; Light Themes
 ;; Very Bright
+; (load-theme 'twilight-bright t)
 ; (load-theme 'sanityinc-tomorrow-day t) ; I likey
-; (load-theme 'solarized-light t)        ; Classic
+; (load-theme 'sanityinc-solarized-light t) ; Classic
 ; (load-theme 'pastelmac t)              ; Meh
 ; (load-theme 'leuven t)                 ; Pretty cool, quietly colorful
 ; (load-theme 'paper t)                  ; Pretty cool, rather quiet
 ; (load-theme 'iodine t)                 ; Not a fan
 ; (load-theme 'tango-plus t)             ; Not bad
 ; (load-theme 'soft-morning t)           ; Schizophrenic
-(load-theme 'eink t)                   ; Too quiet
-; (load-theme 'twilight-bright t)
+(load-theme 'eink t)                   ; Beautifully quiet
 ;; Muted
 
 ;;; Colorful Themes
 ;; Exciting
 ; (load-theme 'borland-blue t)
+; (load-theme 'sanityinc-tomorrow-blue t)
 ; (load-theme 'plan9 t)
 ;; Conservative
 
@@ -55,13 +63,14 @@
 ;; Very Bold
 ; (load-theme 'sanityinc-tomorrow-bright t)
 ; (load-theme 'sanityinc-tomorrow-night t)
+; (load-theme 'sanityinc-tomorrow-eighties t) ; Somewhat rowdy but dark
 ; (load-theme 'birds-of-paradise-plus t)    ; Very contemplative
 ; (load-theme 'zenburn t)
 ;; (defvar zenburn-override-colors-alist ; Darker Zenburn background
 ;;   '(("zenburn-bg" . "#202020")))
 ;; (load-theme 'zenburn t)
 ; (load-theme 'darktooth t) ; Nice dark variant on B's of P Dark
-; (load-theme 'solarized-dark t)
+; (load-theme 'sanityinc-solarized-dark t)
 ; (load-theme 'planet t) ; Nice clean / industrial feel
 ; (load-theme 'foggy-night t) ; Great low-contrast theme
 ;; Depressing
@@ -91,7 +100,7 @@
 (set-face-attribute 'default nil
 		    :foundry "apple"
 		    :family  "Go Mono"
-		    :height  145
+		    :height  135
 		    :weight  'light)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
@@ -99,13 +108,13 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
-;; Undo tree always
+;; Undo tree
 (undo-tree-mode)
 
-;; Smex setup
-(require 'smex) ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
+(setq-default indent-tabs-mode nil)
+
+;; Smex init
+(smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
@@ -143,7 +152,7 @@
   ;; gofmt-before-save
   (add-hook 'before-save-hook 'gofmt-before-save)
   ;; Go Guru identifier highlighting
-  (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
+  (go-guru-hl-identifier-mode)
   ;; Godef jump / return hotkeys
   (local-set-key (kbd "C-x ,") 'godef-jump)
   (local-set-key (kbd "<s-mouse-1>") 'godef-jump)
@@ -205,48 +214,51 @@
 
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-hook)
 
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
 ;; Dart stuff
 (setq dart-enable-analysis-server t)
 (setq dart-format-on-save t)
 (add-hook 'dart-mode-hook 'flycheck-mode)
 
-;; Javascript stuff
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; ;; Javascript stuff
+;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(defun my-vue-mode-hook ()
-  "My vue-mode config hook."
-  (linum-relative-mode)
-  (setq linum-relative-current-symbol "")
+;; (defun my-vue-mode-hook ()
+;;   "My vue-mode config hook."
+;;   (linum-relative-mode)
+;;   (setq linum-relative-current-symbol "")
 
-  (require 'flycheck-flow)
-  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
+;;   (require 'flycheck-flow)
+;;   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
 
-  (ruler-mode 1)
+;;   (ruler-mode 1)
 
-  (undo-tree-mode)
-)
+;;   (undo-tree-mode)
+;; )
 
-(defun my-js2-hook ()
-  "My js2-mode config hook."
-  (setq js-indent-level 2)
+;; (defun my-js2-hook ()
+;;   "My js2-mode config hook."
+;;   (setq js-indent-level 2)
 
-  (setq company-backends '(company-tern company-flow))
-  (company-mode)
+;;   (setq company-backends '(company-tern company-flow))
+;;   (company-mode)
 
-  (linum-relative-mode)
-  (setq linum-relative-current-symbol "")
+;;   (linum-relative-mode)
+;;   (setq linum-relative-current-symbol "")
 
-  (ruler-mode 1)
+;;   (ruler-mode 1)
 
-  (undo-tree-mode)
+;;   (undo-tree-mode)
 
-  (add-hook 'after-save-hook 'eslint-fix nil t)
-  (require 'flycheck-flow)
-  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
-)
+;;   (add-hook 'after-save-hook 'eslint-fix nil t)
+;;   (require 'flycheck-flow)
+;;   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)
+;; )
 
-(add-hook 'vue-mode-hook 'my-vue-mode-hook)
-(add-hook 'js2-mode-hook 'my-js2-hook)
+;; (add-hook 'vue-mode-hook 'my-vue-mode-hook)
+;; (add-hook 'js2-mode-hook 'my-js2-hook)
 
 (defun my-json-mode-hook ()
   "My json-mode config hook."
@@ -255,27 +267,28 @@
 
 (add-hook 'json-mode-hook 'my-json-mode-hook)
 
-(defun my-elixir-mode-hook ()
-  "My 'elixir-mode' hook."
-  (smartparens-mode)
-  (sp-with-modes '(elixir-mode)
-    (sp-local-pair "fn" "end"
-           :when '(("SPC" "RET"))
-           :actions '(insert navigate))
-    (sp-local-pair "do" "end"
-           :when '(("SPC" "RET"))
-           :post-handlers '(sp-ruby-def-post-handler)
-           :actions '(insert navigate))
-  )
-)
+;; (defun my-elixir-mode-hook ()
+;;   "My 'elixir-mode' hook."
+;;   (smartparens-mode)
+;;   (sp-with-modes '(elixir-mode)
+;;     (sp-local-pair "fn" "end"
+;;            :when '(("SPC" "RET"))
+;;            :actions '(insert navigate))
+;;     (sp-local-pair "do" "end"
+;;            :when '(("SPC" "RET"))
+;;            :post-handlers '(sp-ruby-def-post-handler)
+;;            :actions '(insert navigate))
+;;   )
+;; )
 
-(add-hook 'elixir-mode 'my-elixir-mode-hook)
+;; (add-hook 'elixir-mode 'my-elixir-mode-hook)
 
 (defun my-rust-mode-hook ()
   "My 'rust-mode' hook."
   (setq indent-tabs-mode t)
 
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  ; (define-key rust-doc-key (kbd "M-?") #'racer-describe)
   (setq company-tooltip-align-annotations t)
 
   (setq racer-rust-src-path (getenv "RUST_SRC_PATH"))
@@ -289,6 +302,8 @@
   (rainbow-delimiters-mode)
 
   (ruler-mode 1)
+
+  (undo-tree-mode)
 )
 
 (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
@@ -301,16 +316,16 @@
 (require 'rust-mode)
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
 
-;; local configuration for TeX modes
-(defun my-tex-mode-hook ()
-  "My 'tex-mode' hook."
-  (setq company-backends '(company-math-symbols-latex
-                           company-latex-commands))
-  (latex-preview-pane-enable)
-  (company-mode)
-)
+;; ;; local configuration for TeX modes
+;; (defun my-tex-mode-hook ()
+;;   "My 'tex-mode' hook."
+;;   (setq company-backends '(company-math-symbols-latex
+;;                            company-latex-commands))
+;;   (latex-preview-pane-enable)
+;;   (company-mode)
+;; )
 
-(add-hook 'tex-mode-hook 'my-tex-mode-hook)
+;; (add-hook 'tex-mode-hook 'my-tex-mode-hook)
 
 ;; custom text-mode hook
 (defun my-text-mode-hook ()
@@ -341,6 +356,31 @@
 
 (add-hook 'sh-mode-hook 'my-sh-mode-hook)
 
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;;; C/C++ Prep
+(require 'rtags)
+(require 'company-rtags)
+(require 'company-irony-c-headers)
+;; Code Navigation
+(setq rtags-completions-enabled t)
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends '(company-irony-c-headers company-irony)))
+;; Clang format
+(global-set-key [C-M-tab] 'clang-format-region)
+;;
+(setq rtags-autostart-diagnostics t)
+(rtags-enable-standard-keybindings)
+;; Helm integration
+;; (require 'rtags-helm) ???
+(require 'helm-rtags)
+(setq rtags-use-helm t)
+;; Irony mode / autocompletion integration
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
 (defun my-irony-mode-hook ()
@@ -348,31 +388,49 @@
     'irony-completion-at-point-async)
   (define-key irony-mode-map [remap complete-symbol]
     'irony-completion-at-point-async))
-
+;;
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(add-hook 'irony-mode-hook 'irony-eldoc)
+(add-hook 'irony-mode-hook #'irony-eldoc)
+;; Use Company completion
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+(setq company-backends (delete 'company-semantic company-backends))
+;; Use tab for completion
+(define-key c-mode-map [(tab)] 'company-complete)
+(define-key c++-mode-map [(tab)] 'company-complete)
+
+(cmake-ide-setup)
+
+(defun clang-format-buffer-smart ()
+  "Reformat buffer if .clang-format exists in the projectile root."
+  (when (f-exists? (expand-file-name ".clang-format" (projectile-project-root)))
+    (clang-format-buffer)))
+
+(defun clang-format-buffer-smart-on-save ()
+  "Add auto-save hook for clang-format-buffer-smart."
+  (add-hook 'before-save-hook 'clang-format-buffer-smart nil t))
 
 (defun my-cxx-mode ()
   "My C / C++ config hook."
-  (cmake-ide-setup)
   (setq indent-tabs-mode t)
-  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
-  (add-to-list 'company-backends '(company-irony-c-headers
-				   company-irony))
+
   (c-set-style "K&R")
-  ;; linum-relative-mode
+
   (linum-relative-mode)
   (setq linum-relative-current-symbol "")
-  ;; irony-mode
-  (irony-mode)
-  ;; autocomplete
+
   (company-mode)
-  ;;
+
+  (flycheck-mode)
+
   (rainbow-delimiters-mode)
-  ;;
+
   (ruler-mode 1)
+
+  (undo-tree-mode)
+
+  ;; Auto-format buffer iff .clang-format file in projectile root.
+  (clang-format-buffer-smart-on-save)
 )
 
 ;; GLSL Mode
@@ -388,9 +446,11 @@
   (setq-local flycheck-highlighting-mode nil)
   (setq-local flycheck-check-syntax-automatically nil)
 )
-
+;; Set up Flycheck to use Irony
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 ;; c-mode-common-hook is also called by c++-mode
-;(add-hook 'my-cxx-mode #'my-flycheck-rtags-setup)
+(add-hook 'my-cxx-mode #'my-flycheck-rtags-setup)
 
 (add-hook 'c++-mode-hook 'my-cxx-mode)
 (add-hook 'c-mode-hook 'my-cxx-mode)
@@ -416,10 +476,10 @@
 (defun my-org-mode-hook ()
   "My custom Org-mode hook."
   ; (org-bullets-mode 1)
-  (undo-tree-mode)
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
   (focus-mode)
+  (undo-tree-mode)
   (setq org-log-done t)
 )
 
@@ -427,6 +487,14 @@
                              "~/meta/meta/org/bookmarks.org"))
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
+
+(defun my-markdown-mode-hook ()
+  "My custom Markdown-mode hook."
+  (focus-mode)
+  (undo-tree-mode)
+)
+
+(add-hook 'markdown-mode-hook 'my-markdown-mode-hook)
 
 (setq epg-gpg-program "gpg2")
 (require 'helm-pass)
@@ -451,8 +519,6 @@
   (ruler-mode 1)
 )
 
-(add-hook 'ponylang-mode-hook 'my-ponylang-mode-hook)
-
 (require 'protobuf-mode)
 
 (defun my-protobuf-mode-hook ()
@@ -473,11 +539,9 @@
 
 (provide 'init)
 ;;; init.el ends here
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(js2-error ((t (:underline "#c82829"))))
- '(js2-warning ((t (:underline (:color "gold" :style wave))))))
+ )
