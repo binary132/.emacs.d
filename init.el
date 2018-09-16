@@ -25,10 +25,10 @@
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- ; '(magit-commit-arguments (quote ("--gpg-sign=BAA2F70290B90EB87F923C38C71FE7F2B22B57F5")))
  '(package-selected-packages
    (quote
-    (zig-mode flycheck-mix flycheck-elixir flycheck-dialyxir flycheck-credo alchemist haskell-mode clang-format projectile helm-rtags company-rtags json-navigator smex helm-idris pinentry markdown-toc markdown-mode+ flymd pass color-theme-sanityinc-solarized yasnippet irony-eldoc foggy-night-theme darktooth-theme badger-theme alect-themes twilight-bright-theme tango-plus-theme soft-morning-theme punpun-theme planet-theme plan9-theme pastelmac-theme paper-theme leuven-theme eziam-theme lenlen-theme iodine-theme greymatters-theme eink-theme pomidor treemacs smartparens racket-mode borland-blue-theme protobuf-mode flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode pdf-tools latex-preview-pane company-math julia-shell ess nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack)))
+    (flycheck-rtags zig-mode flycheck-mix flycheck-elixir flycheck-dialyxir flycheck-credo alchemist haskell-mode clang-format projectile helm-rtags company-rtags json-navigator smex helm-idris pinentry markdown-toc markdown-mode+ flymd pass color-theme-sanityinc-solarized yasnippet irony-eldoc foggy-night-theme darktooth-theme badger-theme alect-themes twilight-bright-theme tango-plus-theme soft-morning-theme punpun-theme planet-theme plan9-theme pastelmac-theme paper-theme leuven-theme eziam-theme lenlen-theme iodine-theme greymatters-theme eink-theme pomidor treemacs smartparens racket-mode borland-blue-theme protobuf-mode flycheck-bashate flycheck-demjsonlint json-mode yaml-mode glsl-mode logstash-conf magit-gh-pulls kubernetes ensime helm-circe circe flycheck-irony company-irony-c-headers company-irony rtags cmake-ide cmake-mode groovy-mode smart-mode-line ponylang-mode flycheck-pony go-add-tags go-impl visual-regexp-steroids visual-regexp toml-mode helm-cider emacsql-mysql company-anaconda pydoc pyenv-mode python-mode py-yapf py-autopep8 spray ereader helm-pass org-bullets birds-of-paradise-plus-theme bookmark+ elfeed-org elfeed rainbow-blocks all-the-icons-dired ido-ubiquitous ido-yes-or-no ido-hacks f3 all-the-icons ripgrep rg rainbow-mode geiser paredit-menu paredit focus flyspell-lazy ace-flyspell vdiff dockerfile-mode pdf-tools latex-preview-pane company-math julia-shell ess nim-mode flycheck-nim idris-mode company-tern company-flow gotest ac-js2 eslint-fix color-theme-sanityinc-tomorrow zenburn-theme vue-mode undo-tree rats rainbow-delimiters racer mocha markdown-mode magit linum-relative goto-last-change go-rename go-guru go-eldoc go-dlv go-direx flycheck-rust flycheck-gometalinter flycheck-flow company-go cargo ack)))
+ ;; '(projectile-mode t nil (projectile))
  '(safe-local-variable-values (quote ((clang-format-on-save . t)))))
 
 
@@ -191,7 +191,7 @@
   (if (not (string-match "go" compile-command))
     (set (make-local-variable 'compile-command)
          (concat "go generate ./... && "
-		 "go test --coverprofile=cover.out -check.vv && "
+		 "go test --coverprofile=cover.out -v && "
 		 "go build ./...")))
   (local-set-key (kbd "C-x c") 'compile)
   ;; Minimap
@@ -449,7 +449,7 @@
   ;;
   ;; Jump to / from definition
   (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
-  (local-set-key (kbd "M-,") 'pop-tag-mark)
+  (local-set-key (kbd "M-,") 'rtags-location-stack-back)
   ;; Compile
   (local-set-key (kbd "C-x c") 'cmake-ide-compile)
   ;; Tab-completion.
